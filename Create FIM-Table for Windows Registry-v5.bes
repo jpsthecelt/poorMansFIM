@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Task>
+		<Title>Create FIM-Table for Windows Registry-v5</Title>
+		<Description>Version 4: This task creates a logfile, FIMwindows_data.txt (for Windows) which contains the status of a 'file-integrity-monitoring'-type assessment of particular parts of the filesystem. It can run initially, or to update the existing table. $Id: Create FIM-Table for Windows Registry-v5.bes 99 2014-06-02 19:13:58Z singerj $</Description>
+		<Relevance>name of operating system contains "Win"</Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2013-12-19</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Tue, 13 May 2014 01:00:13 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[delete __createfile
+createfile until __END__
+{(if (exists value "screensavergraceperiod" of it) then "screensavergraceperiod( " & value "screensavergraceperiod" of it as string & " ):" & last write time of it as string else "screensavergraceperiod: <N/E>") of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" of registry}
+{(if (exists value "cachedlogonscount" of it) then "cachedlogonscount( " & value "cachedlogonscount" of it as string & " ):" & last write time of it as string else "cachedlogonscount: <N/E>") of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" of registry}
+{(if (exists value "defaultpasswordvalue" of it) then "defaultpasswordvalue( " & value "defaultpasswordvalue" of it as string & " ):" & last write time of it as string else "defaultpasswordvalue: <N/E>") of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" of registry}
+{(if (exists value "restrictanonymous" of it) then "restrictanonymous( " & value "restrictanonymous" of it as string & " ):" & last write time of it as string else "restrictanonymous: <N/E>") of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa" of registry}
+{(if (exists value "restrictanonymoussam" of it) then "restrictanonymoussam( " & value "restrictanonymoussam" of it as string & " ):" & last write time of it as string else "restrictanonymoussam: <N/E>") of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa" of registry}
+{(if (exists value "auditbaseobjects" of it) then "auditbaseobjects( " & value "auditbaseobjects" of it as string & " ):" & last write time of it as string else "auditbaseobjects: <N/E>") of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa" of registry}
+{(if (exists value "everyoneincludesanonymous" of it) then "everyoneincludesanonymous( " & value "everyoneincludesanonymous" of it as string & " ):" & last write time of it as string else "everyoneincludesanonymous: <N/E>") of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa" of registry}
+{(if (exists value "nolmhash" of it) then "nolmhash( " & value "nolmhash" of it as string & " ):" & last write time of it as string else "nolmhash: <N/E>") of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa" of registry}
+{(if (exists value "ScreenSaveTimeOut" of it) then "ScreenSaveTimeOut( " & value "ScreenSaveTimeOut" of it as string & " ):" & last write time of it as string else "ScreenSaveTimeOut: <N/E>") of key "HKEY_CURRENT_USER\Control Panel\Desktop" of registry}
+{(if (exists value "limitblankpassworduse" of it) then "limitblankpassworduse( " & value "limitblankpassworduse" of it as string & " ):" & last write time of it as string else "limitblankpassworduse: <N/E>") of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa" of registry}
+{(if (exists value "MinEncryptionLevel" of it) then "MinEncryptionLevel( " & value "MinEncryptionLevel" of it as string & " ):" & last write time of it as string else "MinEncryptionLevel: <N/E>") of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" of registry}
+{(if (exists value "LsaPid" of it) then "LsaPid( " & value "LsaPid" of it as string & " ):" & last write time of it as string else "LsaPid: <N/E>") of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa" of registry}
+{(if (exists value "FIPSAlgorithmPolicy" of it) then "FIPSAlgorithmPolicy( " & value "FIPSAlgorithmPolicy" of it as string & " ):" & last write time of it as string else "FIPSAlgorithmPolicy: <N/E>") of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa" of registry}
+__END__
+
+// If 1st time we're running, rename datafile & create checksum
+if {((not exists file "FIMwindows_data.txt" of it and not exists "FIMwindows_dataChecksum.txt" of it) of pathname of client folder of current site )}
+move __createfile "{pathname of client folder of current site }\FIMwindows_data.txt"
+createfile until __END__
+{sha1 of file (pathname of client folder of current site & "\FIMwindows_data.txt")}
+__END__
+move __createfile  "{pathname of client folder of current site}\FIMwindows_dataChecksum.txt"
+// Otherwise, if no .bak file but checksum changed,  update datafile & move to .bak
+elseif {not exists "FIMwindows_dataChecksum.bak" of pathname of client folder of current site}
+if {sha1 of file "__createfile" of pathname of client folder of current site != line 1 of file "FIMwindows_dataChecksum.txt" of pathname of client folder of current site }
+move  "{pathname of client folder of current site }\FIMwindows_data.txt"   "{pathname of client folder of current site}\FIMwindows_data.bak" 
+move __createfile  "{pathname of parent folder of regapp "BESClient.exe"}\FIMwindows_data.txt"
+endif
+else
+// just update datafile
+if {sha1 of file "__createfile" of pathname of client folder of current site != line 1 of file "FIMwindows_dataChecksum.txt" of pathname of client folder of current site}
+delete "{pathname of client folder of current site }\FIMwindows_data.txt"
+move __createfile "{pathname of client folder of current site }\FIMwindows_data.txt"
+endif
+endif]]></ActionScript>
+			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
+		</DefaultAction>
+	</Task>
+</BES>

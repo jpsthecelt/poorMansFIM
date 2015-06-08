@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Task>
+		<Title>Create FIM-Table for Red Hat-v3</Title>
+		<Description>Version 3: This task creates a logfile, FIMredhat_data.txt (for RedHat) which contains the status of a 'file-integrity-monitoring'-type assessment of particular parts of the filesystem. It can run initially, or to update the existing table. $Id: Create FIM-Table for Red Hat-v3.bes 99 2014-06-02 19:13:58Z singerj $</Description>
+		<Relevance>name of operating system contains "inux"</Relevance>
+		<Category>File Integrity Monitoring</Category>
+		<Source>Internal-Trianz-JSinger</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2013-01-13</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Tue, 14 Jan 2014 18:32:32 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[delete __createfile
+createfile until __END__
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file "/etc/security/user" |  "/etc/security/user: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file "/etc/security/login.cfg" |  "/etc/security/login.cfg: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/inetd.conf"  |  "/etc/inetd.conf: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/rc.tcpip"    | "/etc/rc.tcpip: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>"))  of file   "/etc/inittab"     | "/etc/inittab: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>"))  of file   "/etc/ftpusers"    | "/etc/ftpusers: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/mail/sendmail.cf" | "/etc/mail/sendmail.cf: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder "/etc/security"    | "/etc/security folder: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/passwd"  |  "/etc/passwd: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/group"       | "/etc/group: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/motd"  |  "/etc/motd: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/ntp.conf"    | "/etc/ntp.conf: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/hosts.equiv" | "/etc/hosts.equiv: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/tunables/nextboot"  |  "/etc/tunables/nextboot: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/security/limits"  |  "/etc/security/limits: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/security/audit/config"  |  "/etc/securit/audit/config: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/usr/lib/security/mkuser.default"  |  "/etc/usr/lib/security/mkuser.default: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/syslog.conf"  |  "/etc/syslog.conf: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/ssh/sshd_config"  |  "/etc/ssh/sshd_config: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/shosts.equiv"  |  "/etc/shosts.equiv: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/snmp.conf"  |  "/etc/snmp.conf: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder   "/sbin"  |  "/sbin folder: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder   "/bin"  |  "/bin folder: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder   "/lib"  |  "/lib folder: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder   "/mnt"  |  "/mnt folder: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder   "/mnt/floppy"  |  "/mnt/floppy folder: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder   "/root"  |  "/root folder: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder   "/boot"  |  "/boot folder: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file     "/etc/mtab"  |  "/etc/mtab: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder   "/etc"  |  "/etc folder: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder   "/etc/shadow"  |  "/etc/shadow folder: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder   "/etc/rc.d"  |  "/etc/rc.d folder: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder   "/etc/pam.d      "  |  "/etc/pam.d folder: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/hosts"  |  "/etc/hosts: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/hosts.allow"  |  "/etc/hosts.allow: <N/E>"}
+{(if (exists it) then (pathname of it & ": " & modification time of it as string) else (it as string & ": <N/E>")) of file   "/etc/hosts.deny"  |  "/etc/hosts.deny: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder   "/var/spool"  |  "/var/spool folder: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder   "/var/spool/cron"  |  "/var/spool/cron folder: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder   "/var/spool/mqueue"  |  "/var/spool/mqueue folder: <N/E>"}
+{(if (exists it) then (pathname of it & " folder: " & modification time of it as string) else (it as string & "folder: <N/E>")) of folder   "/var/spool/mail"  |  "/var/spool/mail folder: <N/E>"}
+__END__
+
+// If 1st time we're running, rename datafile & create checksum
+if {(not exists file "/var/opt/BESClient/FIMredhat_data.txt" and not exists file "/var/opt/BESClient/FIMredhat_dataChecksum.txt")}
+move __createfile "/var/opt/BESClient/FIMredhat_data.txt"
+createfile until __END__
+{sha1 of file "/var/opt/BESClient/FIMredhat_data.txt"}
+__END__
+move __createfile "/var/opt/BESClient/FIMredhat_dataChecksum.txt"
+// Otherwise, if no .bak file but checksum changed,  update datafile & move to .bak
+elseif {not exists file "/var/opt/BESClient/FIMredhat_data.bak" }
+if {(((sha1 of file (pathname of client folder of site "actionsite" & "/__createfile")) != (line 1 of file "/var/opt/BESClient/FIMredhat_dataChecksum.txt")))}
+move "/var/opt/BESClient/FIMredhat_data.txt" "/var/opt/BESClient/FIMredhat_data.bak"
+move __createfile "/var/opt/BESClient/FIMredhat_data.txt"
+endif
+else
+// just update datafile
+if {(((sha1 of file (pathname of client folder of site "actionsite" & "/__createfile")) != (line 1 of file "/var/opt/BESClient/FIMredhat_dataChecksum.txt")))}
+delete "/var/opt/BESClient/FIMredhat_data.txt"
+move __createfile "/var/opt/BESClient/FIMredhat_data.txt"
+endif
+endif]]></ActionScript>
+			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
+		</DefaultAction>
+	</Task>
+</BES>

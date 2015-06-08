@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Aix File Integrity Monitoring Analysis</Title>
+		<Description>Aix File Integrity Monitoring Analysis $Id: Aix File Integrity Monitoring Analysis.bes 99 2014-06-02 19:13:58Z singerj $</Description>
+		<Relevance>name of operating system as lowercase contains "aix"</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2013-12-20</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Thu, 09 Jan 2014 22:08:46 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="FIMdata.txt" ID="1" EvaluationPeriod="PT5M">lines of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="FIMchecksum" ID="2" EvaluationPeriod="PT5M">line 1 of file "/var/opt/BESClient/FIMaix_dataChecksum.txt"</Property>
+		<Property Name="security-login.cfg" ID="3" EvaluationPeriod="PT5M">lines whose (it contains "/etc/security/login.cfg") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="inetd.conf" ID="4" EvaluationPeriod="PT5M">lines whose (it contains "/etc/inetd.conf") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="rc.tcpip" ID="5" EvaluationPeriod="PT5M">lines whose (it contains "/etc/rc.tcpip") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="inittab" ID="6" EvaluationPeriod="PT5M">lines whose (it contains "/etc/inittab") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="ftpusers" ID="7" EvaluationPeriod="PT5M">lines whose (it contains "/etc/ftpusers") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="sendmail.cf" ID="8" EvaluationPeriod="PT5M">lines whose (it contains "/etc/mail/sendmail.cf") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="securityfolder" ID="9" EvaluationPeriod="PT5M">lines whose (it contains "/etc/security folder") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="group" ID="10" EvaluationPeriod="PT5M">lines whose (it contains "/etc/group") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="ntp.conf" ID="11" EvaluationPeriod="PT5M">lines whose (it contains "/etc/ntp.conf") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="hosts.equiv" ID="12" EvaluationPeriod="PT5M">lines whose (it contains "/etc/hosts.equiv") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="snmp.conf" ID="13" EvaluationPeriod="PT5M">lines whose (it contains "/etc/snmp.conf") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="sbin" ID="14" EvaluationPeriod="PT5M">lines whose (it contains "/sbin folder") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="bin" ID="15" EvaluationPeriod="PT5M">lines whose (it contains "/bin folder") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="lib" ID="16" EvaluationPeriod="PT5M">lines whose (it contains "/lib folder") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="mnt" ID="17" EvaluationPeriod="PT5M">lines whose (it contains "/mnt folder") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="mnt-floppy" ID="18" EvaluationPeriod="PT5M">lines whose (it contains "/mnt/floppy folder") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="root" ID="19" EvaluationPeriod="PT5M">lines whose (it contains "/root") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="boot" ID="20" EvaluationPeriod="PT5M">lines whose (it contains "/boot") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="mtab" ID="21" EvaluationPeriod="PT5M">lines whose (it contains "/etc/mtab") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="etc" ID="22" EvaluationPeriod="PT5M">lines whose (it contains "/etc folder") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="etc-shadow" ID="23" EvaluationPeriod="PT5M">lines whose (it contains "/etc/shadow folder") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="etc-rc.d" ID="24" EvaluationPeriod="PT5M">lines whose (it contains "/etc/rc.d") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="etc-pam.d" ID="25" EvaluationPeriod="PT5M">lines whose (it contains "/etc/pam.d__") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="etc-hosts" ID="26" EvaluationPeriod="PT5M">lines whose (it contains "/etc/hosts:") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="etc-hosts.allow" ID="27" EvaluationPeriod="PT5M">lines whose (it contains "/etc/hosts.allow") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="etc-hosts.deny" ID="28" EvaluationPeriod="PT5M">lines whose (it contains "/etc/hosts.deny") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="var-spool" ID="29" EvaluationPeriod="PT5M">lines whose (it contains "/var/spool folder") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="var-spool-cron" ID="30" EvaluationPeriod="PT5M">lines whose (it contains "cron") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="var-spool-mq" ID="31" EvaluationPeriod="PT5M">lines whose (it contains "/var/spool/mqueue") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="var-spool-mail" ID="32" EvaluationPeriod="PT5M">lines whose (it contains "/var/spool/mail") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="passwd" ID="33" EvaluationPeriod="PT5M">lines whose (it contains "/etc/passwd") of file "/var/opt/BESClient/FIMaix_data.txt"</Property>
+		<Property Name="FIM-AXcksumNotMatch" ID="34" EvaluationPeriod="PT15M">sha1 of file "/var/opt/BESClient/FIMaix_data.txt" != line 1 of file "/var/opt/BESClient/FIMaix_dataChecksum.txt"</Property>
+	</Analysis>
+</BES>

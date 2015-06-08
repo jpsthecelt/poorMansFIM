@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Windows File Integrity Monitoring - Registry Analysis</Title>
+		<Description>Windows File Integrity Monitoring - Registry Analysis. $Id: Windows File Integrity Monitoring - Registry Analysis.bes 99 2014-06-02 19:13:58Z singerj $</Description>
+		<Relevance>name of operating system contains "Win"</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2013-12-23</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Thu, 16 Jan 2014 00:21:02 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="FIRM Registry Values" ID="1" EvaluationPeriod="PT5M">lines of file "FIMwindows_data.txt" of parent folder of regapp "BESClient.exe"</Property>
+		<Property Name="screensavergraceperiod" ID="2" EvaluationPeriod="PT5M">lines whose (it as lowercase contains "screensaver") of file "FIMwindows_data.txt" of parent folder of regapp "BESClient.exe" </Property>
+		<Property Name="cachedlogonscount" ID="3" EvaluationPeriod="PT5M">lines whose (it as lowercase contains "cachedlogonscount") of file "FIMwindows_data.txt" of parent folder of regapp "BESClient.exe"</Property>
+		<Property Name="defaultpasswordvalue" ID="4" EvaluationPeriod="PT5M">lines whose (it as lowercase contains "defaultpasswordvalue") of file "FIMwindows_data.txt" of parent folder of regapp "BESClient.exe"</Property>
+		<Property Name="FIMchecksum" ID="5" EvaluationPeriod="PT5M">line 1 of file "FIMwindows_dataChecksum.txt" of parent folder of regapp "BESClient.exe"</Property>
+		<Property Name="FIM-WINcksumNotMatch" ID="6" EvaluationPeriod="PT5M">line 1 of file "FIMwindows_dataChecksum.txt" of parent folder of regapp "BESClient.exe" != sha1 of file "FIMwindows_data.txt" of parent folder of regapp "BESClient.exe"</Property>
+	</Analysis>
+</BES>
